@@ -1,0 +1,15 @@
+{
+  "name": "invoice-pdf-test",
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "puppeteer": "^22.12.0"
+  }
+}

@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Invoice</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin-top: 150px;
+        margin-bottom: 150px;
+        font-size: 14px;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+      }
+      .center {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box {
+        border: 1px solid lightgray;
+        padding: 8px;
+        width: 40%;
+      }
+      p {
+        margin: 0;
+      }
+      h1 {
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid gray;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        font-weight: 500;
+        background-color: #f2f2f2;
+        text-align: center;
+      }
+      .no-border {
+        border: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="display: flex; justify-content: space-between; margin-bottom: 32px"
+    >
+      <div class="box">
+        <p style="font-weight: 700">Invoice No.: {{invoiceNumber}}</p>
+      </div>
+      <div class="box">
+        <p>{{legalName}}</p>
+        <p>{{address}}</p>
+        <p>{{city}}, {{postalCode}}</p>
+      </div>
+    </div>
+
+    <p style="font-style: italic; margin-bottom: 24px">Brighton, {{date}}</p>
+
+    <table style="margin-bottom: 4px">
+      <thead>
+        <tr>
+          <th>DESCRIPTION</th>
+          <th>UNIT PRICE (£)</th>
+          <th>QTY</th>
+          <th>EXCL. VAT (£)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each items}}
+        <tr>
+          <td>
+            {{description}} <br />
+            Service period from {{periodStart}} to {{periodEnd}}
+          </td>
+          <td style="text-align: end">{{unitPrice}}</td>
+          <td style="text-align: end">{{quantity}}</td>
+          <td style="text-align: end">{{amountExclTax}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+          <td class="no-border"></td>
+          <td class="no-border"></td>
+          <td style="text-align: right; background-color: #f2f2f2">
+            TOTAL EXCL. VAT
+          </td>
+          <td style="text-align: right; font-weight: 700">{{totalExclTax}}</td>
+        </tr>
+        <tr>
+          <td class="no-border"></td>
+          <td class="no-border"></td>
+          <td style="text-align: right; background-color: #f2f2f2">
+            TOTAL VAT<span
+              style="font-weight: 300; font-size: 8px; vertical-align: top"
+              >(1)</span
+            >
+          </td>
+          <td style="text-align: right; font-weight: 700">{{totalVat}}</td>
+        </tr>
+        <tr>
+          <td class="no-border"></td>
+          <td class="no-border"></td>
+          <td style="text-align: right; background-color: #f2f2f2">
+            TOTAL INCL. VAT
+          </td>
+          <td style="text-align: right; font-weight: 700">{{totalInclTax}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-bottom: 32px">(1) VAT Rate: 20.00%</p>
+
+    <div style="text-align: center">
+      <h3 style="margin-bottom: 4px">Amount due: £{{totalInclTax}}</h3>
+      <p>
+        Net amount, payable by bank or postal cheque, due by {{paymentDeadline}}
+      </p>
+      <br />
+      <p>ACCOUNTING DEPARTMENT</p>
+      <br />
+      <p>
+        Payment methods: Card - Cheque - Bank Transfer: IBAN GB99 WEST 4444 5555
+        6666 33 / BIC ABCDGB2L
+      </p>
+    </div>
+  </body>
+</html>
