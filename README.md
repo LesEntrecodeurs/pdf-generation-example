@@ -55,5 +55,5 @@ bun install
 Start the server :
 
 ```bash
-bun run index.ts
+bun run src/index.ts
 ```
